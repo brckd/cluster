@@ -5,7 +5,7 @@ import {
   PaginatedMessageMessageOptionsUnion,
 } from "@sapphire/discord.js-utilities";
 import { Hug } from "../schemata/Hugs";
-import { EmbedBuilder, UserResolvable, bold, userMention } from "discord.js";
+import { Colors, EmbedBuilder, UserResolvable, bold, userMention } from "discord.js";
 import { PAGE_LEN } from "../consts";
 
 @ApplyOptions<Subcommand.Options>({
@@ -38,6 +38,15 @@ export class UserCommand extends Subcommand {
 
   public async chatInputGive(inter: Subcommand.ChatInputCommandInteraction) {
     const target = inter.options.getUser("target")!;
+    if (target.id == inter.user.id) {
+      const embed = new EmbedBuilder()
+        .setDescription("Sadly, you cannot hug yourself. Find someone else to hug.")
+        .setColor(Colors.Red);
+      return inter.reply({
+        embeds: [embed],
+        ephemeral: true,
+      });
+    }
 
     await Hug.findOneAndUpdate(
       { guildId: inter.guildId, userId: target.id },
