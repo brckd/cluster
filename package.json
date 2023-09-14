@@ -1,17 +1,17 @@
 {
-  "name": "@bricked/bot-template",
+  "name": "@bricked/cluster",
   "private": true,
-  "description": "A template for Discord.JS bots.",
+  "description": "A universal discord bot whose name i stole from @clustra on discord. ",
   "keywords": [
-    "bot-template"
+    "cluster"
   ],
-  "homepage": "https://github.com/brycked/bot-template#readme",
+  "homepage": "https://github.com/brckd/cluster#readme",
   "bugs": {
-    "url": "https://github.com/brycked/bot-template/issues"
+    "url": "https://github.com/brckd/cluster/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brycked/bot-template.git"
+    "url": "git+https://github.com/brckd/cluster.git"
   },
   "license": "MIT",
   "author": "Bricked",
@@ -42,7 +42,6 @@
     "extends": "@bricked"
   },
   "release": {
-    "dryRun": true,
     "extends": "@bricked/semantic-release-config"
   },
   "dependencies": {
