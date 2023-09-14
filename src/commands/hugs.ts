@@ -67,24 +67,19 @@ export class UserCommand extends Subcommand {
       const offset = PAGE_LEN * i;
       const padding = formatIndex(Math.min(offset + PAGE_LEN, hugsCount)).length;
       const hugs = await Hug.find({ guildId: inter.guildId }).limit(PAGE_LEN).skip(offset);
+      const embed = new EmbedBuilder()
+        .setDescription(
+          hugs
+            .map((hug, j) => formatEntry(offset + j, hug.userId, `${hug.amount} 🫂`, padding))
+            .join("\n")
+        )
+        .setColor(inter.client.color);
 
-      const page: PaginatedMessageMessageOptionsUnion = {
-        embeds: [
-          new EmbedBuilder()
-            .setDescription(
-              hugs
-                .map((hug, j) => formatEntry(offset + j, hug.userId, `${hug.amount} 🫂`, padding))
-                .join("\n")
-            )
-            .setColor(inter.client.color),
-        ],
-      };
-
+      const page: PaginatedMessageMessageOptionsUnion = { embeds: [embed] };
       return page;
     });
 
-    const paginated = new LazyPaginatedMessage();
-    paginated.addPages(pages);
+    const paginated = new LazyPaginatedMessage({ pages });
     await paginated.run(inter);
   }
 }
