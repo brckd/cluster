@@ -39,13 +39,11 @@ export class UserCommand extends Subcommand {
   public async chatInputGive(inter: Subcommand.ChatInputCommandInteraction) {
     const target = inter.options.getUser("target")!;
 
-    const hug = await Hug.findOneAndUpdate(
+    await Hug.findOneAndUpdate(
       { guildId: inter.guildId, userId: target.id },
-      {},
+      { $inc: { amount: 1 } },
       { upsert: true, new: true }
     );
-    hug.amount++;
-    await hug.save();
 
     const embed = new EmbedBuilder()
       .setDescription(`You have given ${inter.user} a hug 🫂!`)
