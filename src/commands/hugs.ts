@@ -55,9 +55,9 @@ export class UserCommand extends Subcommand {
     );
 
     const embed = new EmbedBuilder()
-      .setDescription(`You have given ${target} a hug 🫂!`)
+      .setDescription(`${inter.user} has given ${target} a hug 🫂!`)
       .setColor(inter.client.color);
-    return inter.reply({ embeds: [embed], ephemeral: true });
+    return inter.reply({ embeds: [embed] });
   }
 
   public async chatInputList(inter: Subcommand.ChatInputCommandInteraction) {
