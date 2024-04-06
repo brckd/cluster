@@ -6,6 +6,9 @@
 
 A universal discord bot whose name i stole from @clustra on discord.
 
+> [!Warning]
+> This project has been archived, as I have lost interest in creating Discord bots with Discord.JS.
+
 ## Usage
 
 `cluster` can be used as a universal discord bot whose name i stole from @clustra on discord.
